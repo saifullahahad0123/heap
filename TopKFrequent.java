@@ -12,23 +12,17 @@ public class TopKFrequent {
             map.put(num, map.getOrDefault(num, 0) + 1);
         }
 
-        // Step 2: Create Min Heap
         PriorityQueue<Integer> pq = new PriorityQueue<>(
             (a, b) -> map.get(a) - map.get(b)
         );
-
-        // Step 3: Add elements to the heap
         for (int num : map.keySet()) {
 
             pq.add(num);
-
-            // Keep only k elements in the heap
             if (pq.size() > k) {
                 pq.poll();
             }
         }
 
-        // Step 4: Store the answer
         int[] ans = new int[k];
 
         for (int i = 0; i < k; i++) {
